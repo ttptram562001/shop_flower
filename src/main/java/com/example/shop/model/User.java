@@ -23,6 +23,8 @@ public class User {
 
     private String address;
 
+    private String avatar;
+
     @Column(name = "number_phone")
     private String numberPhone;
 }

@@ -3,7 +3,7 @@ package com.example.shop.controller;
 import com.example.shop.model.Bill;
 import com.example.shop.model.User;
 import com.example.shop.service.BillServiceImpl;
-import com.example.shop.service.FlowerServiceImpl;
+import com.example.shop.service.FootwearServiceImpl;
 import com.example.shop.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class BillController {
     private UserServiceImpl userService;
 
     @Autowired
-    private FlowerServiceImpl flowerService;
+    private FootwearServiceImpl footwearService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Bill> getBillById(@PathVariable(name = "id") Integer id) {
@@ -43,16 +43,18 @@ public class BillController {
     @PostMapping()
     public ResponseEntity<Bill> createBill(@RequestParam(name = "amount") int amount,
                                            @RequestParam(name = "id_user") Integer idUser,
-                                           @RequestParam(name = "id_flower") Integer idFlower) {
-        if (userService.getUserById(idUser) == null || flowerService.getFlowerById(idFlower) == null) {
+                                           @RequestParam(name = "id_footwear") Integer idFootwear
+                                  )
+    {
+        if (userService.getUserById(idUser) == null || footwearService.getFootwearById(idFootwear) == null) {
             return ResponseEntity.badRequest().body(null);
         } else {
             Bill bill = new Bill();
             bill.setAmount(amount);
             bill.setBuyDate(new Date());
-            bill.setFlower(flowerService.getFlowerById(idFlower));
+            bill.setFootwear(footwearService.getFootwearById(idFootwear));
             bill.setUser(userService.getUserById(idUser));
-            bill.setPrice(amount * flowerService.getFlowerById(idFlower).getPrice());
+            bill.setTotal(amount * footwearService.getFootwearById(idFootwear).getPrice());
             return new ResponseEntity(service.createBill(bill), HttpStatus.OK);
         }
     }

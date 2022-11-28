@@ -18,17 +18,17 @@ public class Bill {
 
     private int amount;
 
-    private int price;
+    private int total;
 
     @Column(name = "buy_date")
     private Date buyDate;
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "id_flower")
+    @JoinColumn(name = "id_footwear")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Flower flower;
+    private Footwear footwear;
 
     @ManyToOne
     @JsonIgnore
