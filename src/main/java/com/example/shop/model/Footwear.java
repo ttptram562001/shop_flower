@@ -31,6 +31,12 @@ public class Footwear {
 
     private String description;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "id_type")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Type type;
 
     public Footwear(String name, String design, String image, int price, String description) {
         this.name = name;
