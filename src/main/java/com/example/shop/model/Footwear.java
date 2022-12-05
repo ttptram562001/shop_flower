@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "Footwear")
 public class Footwear {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
