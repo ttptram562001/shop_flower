@@ -27,4 +27,9 @@ public class User {
 
     @Column(name = "number_phone")
     private String numberPhone;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

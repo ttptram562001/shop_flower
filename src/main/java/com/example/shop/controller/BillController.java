@@ -43,8 +43,7 @@ public class BillController {
     @PostMapping()
     public ResponseEntity<Bill> createBill(@RequestParam(name = "amount") int amount,
                                            @RequestParam(name = "id_user") Integer idUser,
-                                           @RequestParam(name = "id_footwear") Integer idFootwear
-                                  )
+                                           @RequestParam(name = "id_footwear") Integer idFootwear)
     {
         if (userService.getUserById(idUser) == null || footwearService.getFootwearById(idFootwear) == null) {
             return ResponseEntity.badRequest().body(null);

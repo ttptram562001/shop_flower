@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -29,5 +30,14 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         else
             return new ResponseEntity(service.login(username, password), HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody User newUser) {
+        if (service.getUserByUsername(newUser.getUsername()) == null) {
+            return new ResponseEntity(service.saveUser(newUser), HttpStatus.OK);
+        } else {
+            return new ResponseEntity("Username already exist", HttpStatus.OK);
+        }
     }
 }
